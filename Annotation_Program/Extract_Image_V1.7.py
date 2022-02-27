@@ -12,7 +12,7 @@ dir_root = "/home/reeve/Git_repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021"
 video_file = 'Sugar_Creek_HD-keep.mp4'
 #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
 #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
-start_frame = 82929# Zero starts the video with the first frames
+start_frame = 83360 # Zero starts the video with the first frames
 
 perc = (start_frame/237501)*100  # calcualte percentager of video traversed
 num_ims = len([name for name in os.listdir(dir_root+"/All")])
@@ -173,10 +173,10 @@ class converter():
         cv2.imshow("Edit Frame",self.frame)
         cv2.setMouseCallback("Edit Frame",self.declare_boundaries)
         Key = cv2.waitKey(abs(self.Refresh))
-        if Key == ord('t'): #paste template
+        if Key == ord('p'): #paste template
             self.Edits = copy.deepcopy(self.boat)
             self.redraw(Indicator=False)
-        elif Key == ord('T') and len(self.Edits)>0: #store to template
+        elif Key == ord('t') and len(self.Edits)>0: #store to template
             self.boat = copy.deepcopy(self.Edits)
             self.activateOverlay(1,1)
         elif Key == ord('r'): #reset the last polygon
