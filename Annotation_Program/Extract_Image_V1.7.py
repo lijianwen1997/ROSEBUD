@@ -12,7 +12,7 @@ dir_root = "/home/reeve/Git_repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021"
 video_file = 'Sugar_Creek_HD-keep.mp4'
 #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
 #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
-start_frame = 109511 # Zero starts the video with the first frames
+start_frame = 136178# Zero starts the video with the first frames
 
 perc = (start_frame/237501)*100  # calcualte percentager of video traversed
 num_ims = len([name for name in os.listdir(dir_root+"/All")])
