@@ -10,14 +10,29 @@ import pymatting
 #Desktop
 # dir_root = "/home/reeve/Git_Repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021" ### Converting a video ###
 
-#laptop
-dir_root = "/home/reeve/Git_Repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021" ### Converting a video ###
 
-#video_file = 'Wabash_River_1_Edit.mp4'
-video_file = 'Sugar_Creek_HD-keep.mp4'
+#######################################################################
+# Wabash River Indfo
+#######################################################################
+#laptop
+dir_root = "/home/reeve/Git_Repos/ROSEBUD/Video/wabash2" ### Converting a video ###
+video_file = 'Wabash_River_2.MP4'
 #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
 #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
-start_frame = 236246  # Zero starts the video with the first frames
+start_frame = 1518 # Zero starts the video with the first frames
+#########################################################################
+
+#######################################################################
+# Sugar Creek Info
+#######################################################################
+#laptop
+# dir_root = "/home/reeve/Git_Repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021" ### Converting a video ###
+# #video_file = 'Wabash_River_1_Edit.mp4'
+# video_file = 'Sugar_Creek_HD-keep.mp4'
+# #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
+# #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
+# start_frame = 236246  # Zero starts the video with the first frames
+#########################################################################
 
 perc = (start_frame/237501)*100  # calcualte percentager of video traversed
 num_ims = len([name for name in os.listdir(dir_root+"/All")])
