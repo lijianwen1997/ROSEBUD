@@ -19,7 +19,7 @@ dir_root = "/home/reeve/Git_repos/ROSEBUD/Video/wabash6" ### Converting a video 
 video_file = 'Wabash_River_6.MP4'
 #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
 #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
-start_frame = 22450 # Zero starts the video with the first frames
+start_frame = 50 # Zero starts the video with the first frames
 #########################################################################
 
 #######################################################################
@@ -33,7 +33,7 @@ start_frame = 22450 # Zero starts the video with the first frames
 # #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
 # start_frame = 236246  # Zero starts the video with the first frames
 #########################################################################
-perc = (start_frame/31694)*100  # calcualte percentager of video traversed
+perc = (start_frame/10900)*100  # calcualte percentager of video traversed
 #perc = (start_frame/237501)*100  # calcualte percentager of video traversed
 num_ims = len([name for name in os.listdir(dir_root+"/All")])
 print("===============================================================================")
