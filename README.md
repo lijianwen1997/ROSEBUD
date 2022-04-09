@@ -17,21 +17,21 @@ value of 1 for pixels that contain water, and 0 that contain non-water entities.
 for the water recognition task
 
 ![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/intclass_binary_water_masks/binary_water_mask_253.png)
-- **uint8_binary_water_masks** - folder contains greysscale (width x height) masks of images where each
+- **uint8_binary_water_masks** - folder contains greyscale (width x height) masks of images where each
 pixel is given a value of 255 or 0 for pixels representing water and non-water respectivley. These masks can 
 be used in the water recognition task
 
 ![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/uint8_binary_water_masks/binary_water_mask_253.png)
 - **rgb_binary_water_masks** - folder contains RGB (width x height x 3) masks of images where each pixel in the image
-is given a value of [255,255,255] ([r,g,b], or white) for each pixel that represents water, and a value of [0,0,0]
-  ([r,b,g] or black) for each pixel that represents an obstacle.
+is given a value of white [255,255,255] ([r,g,b]) for each pixel that represents water, and a value of black [0,0,0] 
+([r,b,g]) for each pixel that represents an non-water.
 
 ![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_binary_water_masks/binary_water_mask_253.png)
-- **rgb_fluvial_masks** - folder contains rgb (width x height x 3) masks of fluvial scenes that can be used towards full
+- **rgb_fluvial_masks** - folder contains RGB (width x height x 3) masks of fluvial scenes that can be used towards full
 recognition of fluvial scenes. These images spereate the scene into more categores than just water and non water. 
 the masks seperate the image into 7 distinct classes:
   - Water - [255,255,255]
-  - shore/bank of river/creek - [0,0,255]
+  - Shore/bank of river/creek - [0,0,255]
   - Bridges - [0, 255, 0]
   - Boats/cars/people - [255,0,0]
   - Trees and other foliage - [255, 255, 0]
@@ -41,9 +41,9 @@ the masks seperate the image into 7 distinct classes:
 ![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_fluvial_masks/rgb_fluvial_mask_253.png)
 - **uint8_fluvial_masks** - folder contains greyscale (width x height) masks of fluvial scenes that can be used towards full
 recognition of fluvial scenes. These images spereate the scene into more categores than just water and non water. 
-the masks seperate= the image into 7 distinct classes:
+the masks seperate the image into 7 distinct classes:
   - Water - [255]
-  - shore/bank of river/creek - [26]
+  - Shore/bank of river/creek - [26]
   - Bridges - [51]
   - Boats/cars/people - [76]
   - Trees and other foliage - [102]
@@ -66,13 +66,13 @@ the image is masked with overlays as:
 ### Wabash River Images
 249 images were obtained from video recorded on a GoPro Hero 4 on Purdue's Mahmoudian labs' [BREAM ASV] (https://ieeexplore.ieee.org/document/9389236) during
 an autonomous traversal of the Wabash River in Tippacanoe County, Indiana in July of 2021. The images encompass the river milage
-between Davis Ferry and Shamrock parks. Many bridges anddother boats are present within this subset, but due to the high
-water level at the time of data collection few obstacles are present in the river.
+between Davis Ferry and Shamrock parks. Many bridges and other boats are present within this subset, but due to the high
+water level at the time of data collection few obstacles are present in the river and thus images.
 
 
 
 ### Sugar Creek Images
-300 images were collected from a canoe on a GoPro hero 4 on September of 2021 during a manned traversal of Sugar Creek 
+300 images were collected from a canoe on a GoPro Hero 4 on September of 2021 during a manned traversal of Sugar Creek 
 in the state of Indiana. The impages in this subset contain many compelx features and shapes from the twisiting and winding sandbars
 and debris within the creek at the time of traversal.
 
