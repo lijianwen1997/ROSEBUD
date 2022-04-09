@@ -70,7 +70,7 @@ between Davis Ferry and Shamrock parks. Many bridges and other boats are present
 water level at the time of data collection few obstacles are present in the river and thus images.
 
 
-
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Wabash_Images/HD/mask_overlay/mask_overlay_163.png)
 ### Sugar Creek Images
 300 images were collected from a canoe on a GoPro Hero 4 on September of 2021 during a manned traversal of Sugar Creek 
 in the state of Indiana. The impages in this subset contain many compelx features and shapes from the twisiting and winding sandbars
