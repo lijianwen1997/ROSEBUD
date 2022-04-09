@@ -7,7 +7,7 @@ images split across two sub-sets of data detailed below. Across each subset ther
 - SD - All images and masks are 512 x 384 
 
 Within each of the above sub-directories there are 7 folders sorting the available masks and images.
-Images and masks can be paired by there trailing number, so image_### matches all masks_###. 
+Images and masks can be paired by their trailing number, so image_### matches all masks_###. 
 
 - **images** - Folder contains all RGB images extracted from recorded video 
 
