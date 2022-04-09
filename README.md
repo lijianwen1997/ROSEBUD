@@ -76,7 +76,7 @@ water level at the time of data collection few obstacles are present in the rive
 in the state of Indiana. The impages in this subset contain many compelx features and shapes from the twisiting and winding sandbars
 and debris within the creek at the time of traversal.
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/images/image_223.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/mask_overlay/mask_overlay_223.png)
 
 ### Forward Progress
 Currently image artifacts are present in the fluvial RGB and greyscale images. These show up as black pixels in the RGB image, 
