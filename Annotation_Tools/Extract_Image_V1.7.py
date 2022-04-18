@@ -15,11 +15,11 @@ import pymatting
 # Wabash River Indfo
 #######################################################################
 #laptop
-dir_root = "/home/reeve/Git_repos/ROSEBUD/Video/wabash7" ### Converting a video ###
-video_file = 'Wabash_River_7.MP4'
+dir_root = "/home/reeve/Git_repos/ROSEBUD/Video/ASV_Sugar_Creek_Canoe_9_30_2021" ### Converting a video ###
+video_file = 'Sugar_Creek_HD-keep.mp4'
 #dir_root = "C:\\Users\\Niklas\\Documents\\Research\\Videos\\Edits\\x" ### Uncomment to Reedit a mask ###
 #video_file = 'Wabash_River_1_Edit_2762_B.jpg' # here you select a image file. The converter switches to image mode automatically
-start_frame = 1463 #Zero starts the video with the first frames
+start_frame = 177551 #Zero starts the video with the first frames
 #########################################################################
 
 #######################################################################
