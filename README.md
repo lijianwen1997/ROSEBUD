@@ -7,7 +7,7 @@ images split across two sub-sets of data detailed below. Across each subset ther
 - SD - All images and masks are 512 x 384 
 
 Within each of the above sub-directories there are 7 folders sorting the available masks and images.
-Images and masks can be paired by their trailing number, so image_### matches all masks_###. 
+Images and masks can be paired by their trailing number, so image_### matches all masks_###. Multiple types of masks are provided for ease of use with various existing segmentation networks.
 
 - **images** - Folder contains all RGB images extracted from recorded video 
 
@@ -70,7 +70,7 @@ between Davis Ferry and Shamrock parks. Many bridges and other boats are present
 water level at the time of data collection few obstacles are present in the river and thus images.
 
 
-
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Wabash_Images/SD/mask_overlay/mask_overlay_163.png)
 ### Sugar Creek Images
 300 images were collected from a canoe on a GoPro Hero 4 on September of 2021 during a manned traversal of Sugar Creek 
 in the state of Indiana. The impages in this subset contain many compelx features and shapes from the twisiting and winding sandbars
