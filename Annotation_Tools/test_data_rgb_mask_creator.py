@@ -26,6 +26,7 @@ import skimage.util as sutil  # https://scikit-image.org/docs/dev/api/skimage.ut
 import skimage.filters as sfilt  # https://scikit-image.org/docs/stable/api/skimage.filters.html
 import skimage.color as scol  # https://scikit-image.org/docs/dev/api/skimage.color.html
 import skimage.exposure as sexp  # https://scikit-image.org/docs/dev/api/skimage.exposure.html
+from PIL import Image
 
 """This script/file will format and condition data as is desired for CNN training. Users will input a raw data directory
 and an output directory, desired image format outputs, and naming convention, etc."""
@@ -36,21 +37,11 @@ and an output directory, desired image format outputs, and naming convention, et
 #####################################################################################
 # conversion to SD
 repo_dir = "/home/reeve/Git_Repos/ROSEBUD"
-masks_to_aug_dir = "/Sugar_Creek_Images/HD/uint8_binary_water_masks/"
-highlevel1 = "/Sugar_Creek_Images/HD"
+dataset = "/Sugar_Creek_Images"
 
-# conversion to other HD
-highlevel2 = "/Sugar_Creek_Images/SD"
-
-# output directories
-mask_dir = repo_dir + masks_to_aug_dir
-mask_out_dir = repo_dir + highlevel2 + "/rgb_binary_water_masks/"
-mask2_out_dir = repo_dir + highlevel1 + "/rgb_binary_water_masks/"
 #####################################################################################
 im_wid = 384  # image width in pixels desired for training
 im_hg = 512  # image width in pixels desired for training
-masklist = sorted(os.listdir(mask_dir))  # list of masks in the mask directory
-img_number = 0  # counter for the number of images that are output
 
 
 
@@ -113,30 +104,44 @@ def convert_to_RGB(gray):
 
 
 if __name__ == '__main__':
-    loop_num = 1  # initialize the loop counter
-    num_images = len(masklist)  # Get the number of images that are being augmented
-    # gen_and_split = True
-    # if gen_and_split:
-    for a in masklist:  # for each image listed
-        name = a.split('.')
-        x = name[0]  # pull out the name of the image
-        orig_mask = imgread(mask_dir + a)  # read in the current masked image that corresponds to cur_image
+    for q in range(2):
+        masks_to_aug_dir = dataset + "/HD/uint8_binary_water_masks/"
+        highlevel1 = dataset + "/HD"
+        # conversion to other HD
+        highlevel2 = dataset + "/SD"
 
-        # Correct mask if from mastr1325 dataset
-        if orig_mask.shape == (384, 512):  # if the mask has the exact resolution of the mastr1325 dataset
-            orig_mask = mastr1325_correct(orig_mask)  # coorect the mask
-        # Transform the image to desired resolution
-        new_mask = stf.resize(orig_mask, (im_wid, im_hg))  # change res. of mask to correct CNN size
+        # output directories
+        mask_dir = repo_dir + masks_to_aug_dir
+        mask_out_dir = repo_dir + highlevel2 + "/rgb_binary_water_masks/"
+        mask2_out_dir = repo_dir + highlevel1 + "/rgb_binary_water_masks/"
+        loop_num = 1  # initialize the loop counter
+        masklist = sorted(os.listdir(mask_dir))  # list of masks in the mask directory
+        num_images = len(masklist)  # Get the number of images that are being augmented
+        # gen_and_split = True
+        # if gen_and_split:
+        for a in masklist:  # for each image listed
+            name = a.split('.')
+            x = name[0]  # pull out the name of the image
+            orig_mask = imgread(mask_dir + a)  # read in the current masked image that corresponds to cur_image
 
-        # convert base resized imagaes to 8bit
-        new_mask = ubt(new_mask)  # convert to 8bit (0,255)
-        orig_mask = ubt(orig_mask)   # convert to 8bit (0,255)
+            # Correct mask if from mastr1325 dataset
+            if orig_mask.shape == (384, 512):  # if the mask has the exact resolution of the mastr1325 dataset
+                orig_mask = mastr1325_correct(orig_mask)  # coorect the mask
+            # Transform the image to desired resolution
+            pil_orig = Image.open(mask_dir + a)
+            new_mask = pil_orig.resize((im_hg, im_wid), resample=Image.NEAREST)
+
+            # convert base resized imagaes to 8bit
+            new_mask = ubt(new_mask)  # convert to 8bit (0,255)
+            orig_mask = ubt(orig_mask)   # convert to 8bit (0,255)
 
 
-        imgsave(mask_out_dir + x + '.png', convert_to_RGB(new_mask))  # write the resized image
-        imgsave(mask2_out_dir + x + '.png', convert_to_RGB(orig_mask))  # write the original image
+            imgsave(mask_out_dir + x + '.png', convert_to_RGB(new_mask))  # write the resized image
+            #imgsave(mask2_out_dir + x + '.png', convert_to_RGB(orig_mask))  # write the original image
 
-        print("Image Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
-              str(round(100*loop_num/num_images, 3)) + " % complete")
+            print("Image Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
+                  str(round(100*loop_num/num_images, 3)) + " % complete")
 
-        loop_num += 1  # increase the loop number
+            loop_num += 1  # increase the loop number
+        print("swapping to Wabash")
+        dataset = "/Wabash_Images"

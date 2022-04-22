@@ -26,6 +26,7 @@ import skimage.util as sutil  # https://scikit-image.org/docs/dev/api/skimage.ut
 import skimage.filters as sfilt  # https://scikit-image.org/docs/stable/api/skimage.filters.html
 import skimage.color as scol  # https://scikit-image.org/docs/dev/api/skimage.color.html
 import skimage.exposure as sexp  # https://scikit-image.org/docs/dev/api/skimage.exposure.html
+from PIL import Image
 
 """This script/file will format and condition data as is desired for CNN training. Users will input a raw data directory
 and an output directory, desired image format outputs, and naming convention, etc."""
@@ -119,106 +120,120 @@ def convert_to_RGB(gray, flip):
 ### Repo Location on machine for output -- CHANGE THESE THINGS###
 #####################################################################################
 # conversion to SD
-repo_dir = "/home/reeve/Git_Repos/ROSEBUD/Sugar_Creek_Images/"
-images_to_convert = "HD/images/"
-masks1_to_Convert = "HD/mask_overlay/"
-masks2_to_Convert = "HD/uint8_fluvial_masks/"
+dataset = "Sugar_Creek_Images/"
+for q in range(2):
+    dataset = "Wabash_Images/"
+    repo_dir = "/home/reeve/Git_Repos/ROSEBUD/" + dataset
+
+    images_to_convert = "HD/images/"
+    masks1_to_Convert = "HD/mask_overlay/"
+    masks2_to_Convert = "HD/uint8_fluvial_masks/"
 
 
-# conversion to other HD
-png_out = "HD/images/"
-pngmasks1 = "HD/rgb_fluvial_masks/"
-pngmasks2 = "HD/uint8_fluvial_masks/"
-img_out = "SD/images/"
-masks1_out = "SD/rgb_fluvial_masks/"
-masks2_out = "SD/uint8_fluvial_masks/"
-overlay_out = "SD/mask_overlay/"
-#####################################################################################
-# directories of input data
-raw_dir = repo_dir + images_to_convert
-mask1_dir = repo_dir + masks1_to_Convert
-mask2_dir = repo_dir + masks2_to_Convert
+    # conversion to other HD
+    png_out = "HD/images/"
+    pngmasks1 = "HD/rgb_fluvial_masks/"
+    pngmasks2 = "HD/uint8_fluvial_masks/"
+    img_out = "SD/images/"
+    masks1_out = "SD/rgb_fluvial_masks/"
+    masks2_out = "SD/uint8_fluvial_masks/"
+    overlay_out = "SD/mask_overlay/"
+    #####################################################################################
+    # directories of input data
+    raw_dir = repo_dir + images_to_convert
+    mask1_dir = repo_dir + masks1_to_Convert
+    mask2_dir = repo_dir + masks2_to_Convert
 
-# directories of processed output data
-img1_out_dir = repo_dir + png_out
-img2_out_dir = repo_dir + img_out
-mask1_out_dir = repo_dir + pngmasks1
-mask2_out_dir = repo_dir + pngmasks2
-mask3_out_dir = repo_dir + masks1_out
-mask4_out_dir = repo_dir + masks2_out
+    # directories of processed output data
+    img1_out_dir = repo_dir + png_out
+    img2_out_dir = repo_dir + img_out
+    mask1_out_dir = repo_dir + pngmasks1
+    mask2_out_dir = repo_dir + pngmasks2
+    mask3_out_dir = repo_dir + masks1_out
+    mask4_out_dir = repo_dir + masks2_out
 
-overlay_out_sd = repo_dir + overlay_out
-
-
-##########################################################################
-## image - backwards values ####
-im_wid = 384  # image width in pixels desired for training
-im_hg = 512  # image width in pixels desired for training
-hd_wd = 1440  # hd image width
-hd_hg = 1920  # image height
-#########################################################################
-
-imlist = sorted(os.listdir(raw_dir))  # list of images in the currrent directory
-mask1list = sorted(os.listdir(mask1_dir))  # list of masks in the mask directory
-mask2list = sorted(os.listdir(mask2_dir))  # list of masks in the mask directory
-num_images = len(imlist)  # Get the number of images that are being augmented
+    overlay_out_sd = repo_dir + overlay_out
 
 
-# # For each image to be renamed
-# loop_num = 0
-# for a in imlist:  # for each image listed
-#     name = a.split('.')
-#     x = name[0]  #pull out the name of the image
-#     # load the image
-#     orig_img = imgread(raw_dir + a)  # read in the current raw image within the data
-#     # Transform the image to desired resolution
-#     cur_img = stf.resize(orig_img, (im_wid, im_hg))  # change res. of image to correct CNN siz
-#     imgsave(img1_out_dir + x + '.png', orig_img)  # Write the orig output image
-#     imgsave(img2_out_dir + x + '.png', cur_img)  # write the resized image
-#
-#     loop_num+=1
-#     print("Image Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
-#           str(round(100*loop_num/num_images, 3)) + " % complete")
-# loop_num = 0
-# # For each overlay to be renamed
-# for a in mask1list:  # for each image listed
-#     name = a.split('.')
-#     x = name[0]  # pull out the name of the image
-#     # load the image
-#     orig_img = imgread(mask1_dir + a)  # read in the current raw image within the data
-#     # Transform the image to desired resolution
-#     cur_img = stf.resize(orig_img, (im_wid, im_hg))  # change res. of image to correct CNN siz
-#     imgsave(mask1_dir + x + '.png', orig_img)  # Write the resized output image
-#     imgsave(overlay_out_sd + x + '.png', cur_img)  # Write the resized output image
-#     loop_num += 1
-#     print("overlay Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
-#           str(round(100 * loop_num / num_images, 3)) + " % complete")
-loop_num = 0
-# For each fluvial mask to be renamed
-for a in mask2list:  # for each image listed
-    name = a.split('.')
-    x = name[0]  #pull out the name of the image
-    # load the image
-    orig_mask = convert_to_RGB(imgread(mask2_dir + a), False)  # read in the current raw image within the data
-    # Transform the image to desired resolution
-    cur_mask = stf.resize(orig_mask, (im_wid, im_hg))  # change res. of image to correct CNN siz
+    ##########################################################################
+    ## image - backwards values ####
+    im_wid = 384  # image width in pixels desired for training
+    im_hg = 512  # image width in pixels desired for training
+    hd_wd = 1440  # hd image width
+    hd_hg = 1920  # image height
+    #########################################################################
+
+    imlist = sorted(os.listdir(raw_dir))  # list of images in the currrent directory
+    mask1list = sorted(os.listdir(mask1_dir))  # list of masks in the mask directory
+    mask2list = sorted(os.listdir(mask2_dir))  # list of masks in the mask directory
+    num_images = len(imlist)  # Get the number of images that are being augmented
+
+    #
+    # For each image to be renamed
+    loop_num = 0
+    for a in imlist:  # for each image listed
+        name = a.split('.')
+        x = name[0]  #pull out the name of the image
+        # load the image
+        orig_img = imgread(raw_dir + a)  # read in the current raw image within the data
+        # Transform the image to desired resolution
+        cur_img = stf.resize(orig_img, (im_wid, im_hg))  # change res. of image to correct CNN siz
+        # imgsave(img1_out_dir + x + '.png', orig_img)  # Write the orig output image
+        imgsave(img2_out_dir + x + '.png', cur_img)  # write the resized image
+
+        loop_num+=1
+        print("Image Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
+              str(round(100*loop_num/num_images, 3)) + " % complete")
+    loop_num = 0
+
+    # For each overlay to be renamed
+    for a in mask1list:  # for each image listed
+        name = a.split('.')
+        x = name[0]  # pull out the name of the image
+        # load the image
+        orig_img = imgread(mask1_dir + a)  # read in the current raw image within the data
+        # Transform the image to desired resolution
+        cur_img = stf.resize(orig_img, (im_wid, im_hg))  # change res. of image to correct CNN siz
+        # imgsave(mask1_dir + x + '.png', orig_img)  # Write the resized output image
+        imgsave(overlay_out_sd + x + '.png', cur_img)  # Write the resized output image
+        loop_num += 1
+        print("overlay Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
+              str(round(100 * loop_num / num_images, 3)) + " % complete")
+    loop_num = 0
+
+    # For each fluvial mask to be renamed
+    for a in mask2list:  # for each image listed
+        name = a.split('.')
+        x = name[0]  #pull out the name of the image
+        # load the image
+        pil_orig_mask = Image.open(mask2_dir + a)
+        w,h = pil_orig_mask.size  # get width and height
+        orig_mask = ubt(pil_orig_mask.resize((w, h), resample=Image.NEAREST)) # read in the current raw image within the data
+        # Transform the image to desired resolution
+        cur_mask = ubt(pil_orig_mask.resize((im_hg, im_wid), resample=Image.NEAREST))
+        # cur_mask = stf.resize(orig_mask, (im_wid, im_hg))  # change res. of image to correct CNN siz
 
 
-    # Convert Greyscale Masks to RGB masks
-    orig_rgb = convert_to_RGB(orig_mask, True)
-    cur_rgb = stf.resize(orig_rgb, (im_wid, im_hg))  # change res. of image to correct CNN siz
+        # Convert Greyscale Masks to RGB masks
+        orig_rgb = convert_to_RGB(orig_mask, True)
+        cur_rgb = convert_to_RGB(cur_mask, True)
+        # cur_rgb = np.asarray(cur_rgb)
+        # cur_rgb = stf.resize(orig_rgb, (im_wid, im_hg))  # change res. of image to correct CNN siz
 
-    # Write converted RGB Masks
-    temp = x.split('_')
-    y = temp[len(temp)-1]
-    imgsave(mask1_out_dir + "rgb_fluvial_mask_" + y + '.png', orig_rgb)    # Write the orig output image
-    imgsave(mask3_out_dir + "rgb_fluvial_mask_" + y + '.png', cur_rgb)    # Write the resized output image
+        # Write converted RGB Masks
+        temp = x.split('_')
+        y = temp[len(temp)-1]
+        imgsave(mask1_out_dir + "rgb_fluvial_mask_" + y + '.png', orig_rgb)    # Write the orig output image
+        imgsave(mask3_out_dir + "rgb_fluvial_mask_" + y + '.png', cur_rgb)    # Write the resized output image
 
-    # Write the orig output image
-    imgsave(mask2_out_dir + x + '.png', orig_mask)
-    # Write the resized output image
-    imgsave(mask4_out_dir + x + '.png', cur_mask)
-    loop_num += 1
-    print("mask Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
-          str(round(100 * loop_num / num_images, 3)) + " % complete")
+        # Write the orig output image
+        imgsave(mask2_out_dir + x + '.png', orig_mask)
+        # Write the resized output image
+        imgsave(mask4_out_dir + x + '.png', cur_mask)
+        loop_num += 1
+        print("mask Number " + str(loop_num) + "/" + str(num_images) + " Completed -->" +
+              str(round(100 * loop_num / num_images, 3)) + " % complete")
+
+    print("done with Clear Creek Moving To Wabash")
+    dataset = "Wabash_Images/"
 
