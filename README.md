@@ -11,22 +11,22 @@ Images and masks can be paired by their trailing number, so image_### matches al
 
 - **images** - Folder contains all RGB images extracted from recorded video 
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/images/image_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/images/253.png)
 - **int_class_binary_water_masks** - folder contains greyscale (width x height) masks of images where each pixel has an integer
 value of 1 for pixels that contain water, and 0 that contain non-water entities. These masks can be used
 for the water recognition task
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/intclass_binary_water_masks/binary_water_mask_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/intclass_binary_water_masks/253.png)
 - **uint8_binary_water_masks** - folder contains greyscale (width x height) masks of images where each
 pixel is given a value of 255 or 0 for pixels representing water and non-water respectivley. These masks can 
 be used in the water recognition task
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/uint8_binary_water_masks/binary_water_mask_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/uint8_binary_water_masks/253.png)
 - **rgb_binary_water_masks** - folder contains RGB (width x height x 3) masks of images where each pixel in the image
 is given a value of white [255,255,255] ([r,g,b]) for each pixel that represents water, and a value of black [0,0,0] 
 ([r,b,g]) for each pixel that represents an non-water.
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_binary_water_masks/binary_water_mask_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_binary_water_masks/253.png)
 - **rgb_fluvial_masks** - folder contains RGB (width x height x 3) masks of fluvial scenes that can be used towards full
 recognition of fluvial scenes. These images spereate the scene into more categores than just water and non water. 
 the masks seperate the image into 7 distinct classes:
@@ -38,7 +38,7 @@ the masks seperate the image into 7 distinct classes:
   - sky/clouds - [255, 0, 255]
   - Debris within the river and on the shore - [0, 255, 255]
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_fluvial_masks/rgb_fluvial_mask_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/rgb_fluvial_masks/253.png)
 - **uint8_fluvial_masks** - folder contains greyscale (width x height) masks of fluvial scenes that can be used towards full
 recognition of fluvial scenes. These images spereate the scene into more categores than just water and non water. 
 the masks seperate the image into 7 distinct classes:
@@ -50,7 +50,7 @@ the masks seperate the image into 7 distinct classes:
   - sky/clouds - [128]
   - Debris within the river and on the shore - [153]
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/uint8_fluvial_masks/greyscale_fluvial_mask_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/uint8_fluvial_masks/253.png)
 - **Mask_Overlay** - folder contains rgb fluvial scenes mapped onto the image for visualization of how the two line up.
 the image is masked with overlays as:
   - Water - clear overlay
@@ -61,7 +61,7 @@ the image is masked with overlays as:
   - sky/clouds - fusia overlay
   - Debris within the river and on the shore - yellow overlay
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/mask_overlay/mask_overlay_253.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/mask_overlay/253.png)
 
 ### Wabash River Images
 249 images were obtained from video recorded on a GoPro Hero 4 on Purdue's Mahmoudian labs' [BREAM ASV] (https://ieeexplore.ieee.org/document/9389236) during
@@ -70,13 +70,13 @@ between Davis Ferry and Shamrock parks. Many bridges and other boats are present
 water level at the time of data collection few obstacles are present in the river and thus images.
 
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Wabash_Images/SD/mask_overlay/mask_overlay_163.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Wabash_Images/SD/mask_overlay/163.png)
 ### Sugar Creek Images
 300 images were collected from a canoe on a GoPro Hero 4 on September of 2021 during a manned traversal of Sugar Creek 
 in the state of Indiana. The impages in this subset contain many compelx features and shapes from the twisiting and winding sandbars
 and debris within the creek at the time of traversal.
 
-![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/mask_overlay/mask_overlay_223.png)
+![image](https://github.com/Reeve-Lambert/ROSEBUD/blob/main/Sugar_Creek_Images/SD/mask_overlay/223.png)
 
 ### Forward Progress
 Currently image artifacts are present in the fluvial RGB and greyscale images. These show up as black pixels in the RGB image, 
